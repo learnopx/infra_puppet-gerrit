@@ -1,0 +1,37 @@
+# This file is managed by puppet.
+# https://git.openstack.org/cgit/openstack-infra/system-config
+
+[gerrit]
+defaultForceUpdate = <%= @replication_force_update %>
+
+<% @replication.each do |replication| -%>
+[remote "<%= replication['name'] %>"]
+	url = <%= replication['url'] %>${name}.git
+<% if replication['replicationDelay'] != nil -%>
+	replicationDelay = <%= replication['replicationDelay'] %>
+<% end -%>
+<% if replication['threads'] != nil -%>
+	threads = <%= replication['threads'] %>
+<% end -%>
+<% if replication['authGroup'] != nil -%>
+	authGroup = <%= replication['authGroup'] %>
+<% end -%>
+<% if replication['replicatePermissions'] != nil -%>
+	replicatePermissions = <%= replication['replicatePermissions'] %>
+<% end -%>
+<% if replication['mirror'] != nil -%>
+	mirror = <%= replication['mirror'] %>
+<% end -%>
+<% if replication['pushhead'] != nil -%>
+	push = <%= replication['pushhead'] %>
+<% end -%>
+<% if replication['pushtag'] != nil -%>
+	push = <%= replication['pushtag'] %>
+<% end -%>
+<% if replication['projects'] != nil -%>
+	projects = <%= replication['projects'] %>
+<% end -%>
+<% if replication['remoteNameStyle'] != nil -%>
+	remoteNameStyle = <%= replication['remoteNameStyle'] %>
+<% end -%>
+<% end -%>
